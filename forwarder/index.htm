@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dynamic Web Forwarder</title>
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+<style>
+  html{
+    height: 100%;
+    width: 100%;
+  }
+
+  body{
+    font-family: 'Roboto', sans-serif;
+    height:100%;
+    width: 100%;
+    text-align:center;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: black;
+  }
+
+  input{
+    font-family: 'Roboto', sans-serif;
+    font-size: inherit;
+  }
+
+iframe{
+  background: LightGray;
+}
+
+.url {
+    padding: 5px;
+    text-align: center;
+    font-size: 16px;
+    display: block;
+    width: 100%;
+    border: 0 transparent;
+    outline: none;
+  }
+  input:focus{
+    outline: 3px solid #7c6991;
+  }
+
+.step{
+  font-size: 30px;
+  color: white;
+  margin: 10px;
+  margin-top: 20px;
+  font-weight: 300;
+}
+
+.go{
+  border: 2px solid #7c6991;
+  margin-top: 30px;
+  padding: 10px;
+  cursor: pointer;
+}
+.go:hover{
+  background: #7c6991;
+}
+.go:hover em{
+  background: black;
+  text-shadow: 1px 1px #7c6991;
+}
+
+em{
+  font-style: normal;
+  display: inline-block;
+  border-radius: 1em;
+  heigth: 1.3em;
+  line-height: 1.3em;
+  width: 1.3em;
+  text-align: center;
+  font-weight: normal;
+  background: #7c6991;
+  text-shadow: 1px 1px #231e29;
+}
+
+
+  #main{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+</style>
+
+</head>
+<body>
+  <div id="main">
+    <div class="step"><em>1</em> Enter address to your local Web Receiver app:
+    <br>
+    <span style="font-size:0.5em">Note: Empty input will remove an existing forward rule.</span>
+    </div>
+
+    <form action="storeforwardurl" method="post" target="formresponse">
+      <input name="localForwardURL" id="localForwardURL" class="url" placeholder="http://..." value="" />
+      <input type="submit" class="step go" value="Submit">
+    </form>
+    <iframe name="formresponse" width="800" height="40">
+    </iframe>
+    <a href="forward">
+      <div id="go-button" class="step go">
+        <em>2</em>
+          GO
+      </div>
+    </a>
+  </div>
+    <script type="text/javascript">
+      localForwardURL.focus();
+      var xhr = new XMLHttpRequest();
+      xhr.onload = () => {
+        if (xhr.status == 200) {
+          localForwardURL.value = xhr.responseText;
+        }
+      };
+      xhr.open("GET", "getforwardurl", true);
+      xhr.send();
+    </script>
+
+<script>
+</script>
+
+</body>
+</html>
