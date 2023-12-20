@@ -6,7 +6,7 @@ This file replicates the google cast web sender message types.
 Official documentation: https://developers.google.com/cast/docs/reference/web_sender
 Relevant sub-package: chrome.cast.media
 
-Currently, this file only contains the subset of all data types.
+Currently, this file only contains a subset of all data types.
 """
 
 class Image(dict):
